@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+containers_list=$(docker ps | cut -d " " -f1)
+if [ "$containers_list" != "CONTAINER" ];
+	then docker kill $(for cont in $containers_list; do if [ "$cont" != "CONTAINER" ]; then echo $cont; fi; done)
+else echo "não há containers ligados no momento!"
+fi
